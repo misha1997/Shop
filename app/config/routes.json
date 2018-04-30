@@ -1,0 +1,14 @@
+{
+  "": [
+    {
+      "controller" : "main",
+      "action" : "index"
+    }
+  ],
+  "product": [
+    {
+      "controller" : "product",
+      "action" : "index"
+    }
+  ]
+}
