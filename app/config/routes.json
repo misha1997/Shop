@@ -1,14 +1,18 @@
 {
-  "": [
-    {
+  "GET": {
+    "#^\/$#": {
       "controller" : "main",
       "action" : "index"
-    }
-  ],
-  "product": [
-    {
+    },
+    "#^\/product$#": {
       "controller" : "product",
+      "action" : "allProduct"
+    }
+  },
+  "POST": {
+    "#^\/tovar\/([0-9]+)$#": {
+      "controller" : "tovat",
       "action" : "index"
     }
-  ]
+  }
 }

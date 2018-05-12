@@ -1,16 +1,27 @@
 <?php namespace libs;
 
 class View {
-	public $patch;
-	public $route;
-
-	function __construct($route) {
-		$this->route = $route;
-		$this->patch = $route['controller'];
-	}
-	function render() {
-		require 'app/web/view_templates/'.$this->patch.'.php';
-	}
+    function load($file) {
+        global $currentFile, $tplDirectory;
+        $file = $tplDirectory.$file;
+        if(isset($file)) {
+            $tplFile = fopen($file, 'r');
+            if ($tplFile) { 
+                while (!feof($tplFile)) {
+                    $currentFile .= fgets($tplFile, 100);
+                }
+            fclose($tplFile);
+            } else {
+                echo "Tpl file not exist";
+            }
+        }
+    }
+    function set($tag, $target) {
+        global $currentFile;
+        $currentFile = str_replace($tag, $target, $currentFile);
+    }
+    function get() {
+        global $currentFile;
+        return $currentFile;
+    }
 }
-
- ?>

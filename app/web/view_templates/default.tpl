@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Product page title</title>
+	<title>[title]</title>
 </head>
 <body>
-	<p>Product page</p>
+	[text]
 </body>
 </html>

@@ -1,19 +1,17 @@
 <?php
 
-use libs\Router;
-use libs\View;
-use libs\Controller;
-use libs\Model;
-//autoload function
+use Libs\Router;
+use Libs\Request;
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 spl_autoload_register(function($class) {
-	$path = str_replace('\\', '/', $class . '.php');
-	if (file_exists($path)) {
-		require_once $path;
-	} else {
-		echo "Class not exist";
+	$patch = str_replace('\\', '/', $class . ".php");
+	if (file_exists($patch)) {
+		require_once $patch;
 	}
 });
 
 $router = new Router;
-
 $router->run();
