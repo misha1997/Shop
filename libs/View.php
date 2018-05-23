@@ -1,27 +1,28 @@
 <?php namespace libs;
 
 class View {
+
+    protected $currentFile;
+    protected $tplDirectory;
+
     function load($file) {
-        global $currentFile, $tplDirectory;
-        $file = $tplDirectory.$file;
+        $file = $this->tplDirectory.$file;
         if(isset($file)) {
             $tplFile = fopen($file, 'r');
             if ($tplFile) { 
                 while (!feof($tplFile)) {
-                    $currentFile .= fgets($tplFile, 100);
+                    $this->currentFile .= fgets($tplFile, 100);
                 }
             fclose($tplFile);
             } else {
-                echo "Tpl file not exist";
+                (new ErrorController())->serverError();
             }
         }
     }
     function set($tag, $target) {
-        global $currentFile;
-        $currentFile = str_replace($tag, $target, $currentFile);
+        $this->currentFile = str_replace($tag, $target, $this->currentFile);
     }
     function get() {
-        global $currentFile;
-        return $currentFile;
+        return $this->currentFile;
     }
 }

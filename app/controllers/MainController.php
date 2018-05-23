@@ -3,7 +3,7 @@
 use libs\View;
 
 class MainController{
-	function indexAction(){	
+	function indexAction() {	
 		$View = new View();
 		$View->load('app/web/view_templates/default.tpl'); 
 		$View->set('[title]', 'Home page');
