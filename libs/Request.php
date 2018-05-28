@@ -1,13 +1,17 @@
 <?php namespace Libs;
 
-use app\controllers\ErrorController;
+use app\exceptions\PageException;
 
 class Request
 {
 	function __construct() {
         $arr = parse_url($_SERVER['REQUEST_URI']);
-        if(!preg_match("#^[a-z0-9_\/.]+$#", $arr['path'])){
-            (new ErrorController())->serverError();
+        try {
+            if(!preg_match("#^[a-z0-9_\/.]+$#", $arr['path'])){
+                throw new PageException("EROR_URL");
+            }
+        } catch (\Exception $e) {
+            $e->getMessage();
         }
 	}
 

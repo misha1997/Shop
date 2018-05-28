@@ -9,14 +9,10 @@ class View {
         $file = $this->tplDirectory.$file;
         if(isset($file)) {
             $tplFile = fopen($file, 'r');
-            if ($tplFile) { 
-                while (!feof($tplFile)) {
-                    $this->currentFile .= fgets($tplFile, 100);
-                }
-            fclose($tplFile);
-            } else {
-                (new ErrorController())->serverError();
+            while (!feof($tplFile)) {
+                $this->currentFile .= fgets($tplFile, 100);
             }
+            fclose($tplFile);
         }
     }
     function set($tag, $target) {

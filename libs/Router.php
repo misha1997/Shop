@@ -1,6 +1,6 @@
 <?php namespace Libs;
 
-use app\controllers\ErrorController;
+use app\exceptions\PageException;
 
 class Router {
 
@@ -30,13 +30,17 @@ class Router {
         return false;
     }
     function run() {
-        if ($this->match()) {
-            $patch = 'app\controllers\\'.ucfirst($this->params['controller']).'Controller';
-            $action = ucfirst($this->params['action']).'Action';
-            $controller = new $patch($this->params);
-            $controller->$action();
-        } else {
-            (new ErrorController())->serverError($e);
-        }
+		try {
+	        if ($this->match()) {
+	            $patch = 'app\controllers\\'.ucfirst($this->params['controller']).'Controller';
+	            $action = ucfirst($this->params['action']).'Action';
+	            $controller = new $patch($this->params);
+	            $controller->$action();
+	        } else {
+	            throw new PageException("ERROR_CLASS");
+	        }
+		} catch (\Exception $e) {
+			$e->getMessage();
+		}
     }
 }
