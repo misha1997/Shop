@@ -1,2 +1,5 @@
 .idea/
 .htaccess
+readme.txt
+app/config/
+app/web/

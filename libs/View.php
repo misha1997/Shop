@@ -18,7 +18,13 @@ class View {
     function set($tag, $target) {
         $this->currentFile = str_replace($tag, $target, $this->currentFile);
     }
-    function get() {
+    function headers() {
+        if (headers_sent()) {
+            return headers_list();
+        }
+    }
+    function render() {
+        $this->headers();
         return $this->currentFile;
     }
 }

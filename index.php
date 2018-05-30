@@ -2,4 +2,4 @@
 
 require_once ("libs/Loader.php");
 
-$router->run();
+$frontController->run();

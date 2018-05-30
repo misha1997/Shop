@@ -1,6 +1,6 @@
 <?php namespace Libs;
 
-use Libs\Router;
+use Libs\FrontController;
 
 spl_autoload_register(function($class) {
 	$patch = str_replace('\\', '/', $class . ".php");
@@ -9,4 +9,4 @@ spl_autoload_register(function($class) {
 	}
 });
 
-$router = new Router;
+$frontController = new FrontController;

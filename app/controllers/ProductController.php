@@ -1,13 +1,9 @@
 <?php namespace app\controllers;
 
-use libs\View;
+use app\view\ProductView;
 
 class ProductController{
-	function allProductAction(){	
-		$View = new View();
-		$View->load('app/web/view_templates/default.tpl'); 
-		$View->set('[title]', 'Product page');
-		$View->set('[text]', 'Text this product page');
-		echo $View->get();
+	function allProduct() {	
+		$productView = new ProductView();
 	}
 }
