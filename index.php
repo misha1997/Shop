@@ -1,5 +1,7 @@
 <?php
 
+use Libs\FrontController;
+
 require_once ("libs/Loader.php");
 
-$frontController->run();
+FrontController::run();

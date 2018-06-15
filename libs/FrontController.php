@@ -3,10 +3,10 @@
 use Libs\Router;
 use app\controllers\ErrorController;
 
-class FrontController {
-
-    function run() {
-
+class FrontController
+{
+    function run()
+    {
 		$rout = new Router();
 
         $patch = 'app\controllers\\'.ucfirst($rout->getController()).'Controller';
