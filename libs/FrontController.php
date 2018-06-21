@@ -1,13 +1,13 @@
 <?php namespace Libs;
 
-use Libs\Router;
 use app\controllers\ErrorController;
 
 class FrontController
 {
-    function run()
+    public function run()
     {
-		$rout = new Router();
+        $di = new DIContainer();
+        $rout = $di->get('router');
 
         $patch = 'app\controllers\\'.ucfirst($rout->getController()).'Controller';
         if (class_exists($patch)) {

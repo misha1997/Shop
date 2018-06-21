@@ -1,9 +1,12 @@
 <?php namespace app\controllers;
 
 use app\view\ProductView;
+use Libs\DIContainer;
 
-class ProductController{
+class ProductController
+{
 	function allProduct() {	
-		$productView = new ProductView();
+		$di = new DIContainer();
+        $productView = $di->get('product.view');
 	}
 }

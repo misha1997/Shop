@@ -1,9 +1,12 @@
 <?php namespace app\controllers;
 
 use app\view\MainView;
+use Libs\DIContainer;
 
-class MainController{
+class MainController
+{
 	function index() {	
-		$mainView = new MainView();
+		$di = new DIContainer();
+        $indexView = $di->get('index.view');
 	}
 }

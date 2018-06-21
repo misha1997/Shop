@@ -1,10 +1,10 @@
 <?php namespace Libs;
 
-class Router {
-
+class Router
+{
     function __construct() {
-
-        $request = new Request;
+        $di = new DIContainer();
+        $request = $di->get('request');
         
         $buffer = file_get_contents('app/config/routes.json');
         $arr = json_decode($buffer, true);

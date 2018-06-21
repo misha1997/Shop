@@ -1,0 +1,17 @@
+{
+  "request": {
+    "classes": "libs\\Request"
+  },
+  "router": {
+    "classes": "libs\\Router"
+  },
+  "product.view": {
+    "classes": "app\\view\\ProductView"
+  },
+  "index.view": {
+    "classes": "app\\view\\MainView"
+  },
+  "error.view": {
+    "classes": "app\\view\\ErrorView"
+  }
+}

@@ -1,9 +1,12 @@
 <?php namespace app\controllers;
 
 use app\view\ErrorView;
+use Libs\DIContainer;
 
-class ErrorController {
+class ErrorController 
+{
     function pageError() {
-        $errorView = new ErrorView();
+    	$di = new DIContainer();
+        $errorView = $di->get('error.view');
     }
 }
