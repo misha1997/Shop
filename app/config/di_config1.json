@@ -1,0 +1,11 @@
+{
+  "Libs\\FrontController": {
+    "classes": "libs\\Router"
+  },
+  "Libs\\Router": {
+    "classes": "libs\\Request"
+  },
+  "app\\controllers\\MainController": {
+    "classes": "app\\view\\MainView"
+  }
+}

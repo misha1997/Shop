@@ -3,9 +3,9 @@
 class Router
 {
     function __construct() {
-        $di = new DIContainer();
-        $request = $di->get('request');
-        
+        $di = new DIContainer1();
+        $request = $di->get(get_class());
+
         $buffer = file_get_contents('app/config/routes.json');
         $arr = json_decode($buffer, true);
         foreach ($arr[$request->getMethod()] as $key => $val) {
