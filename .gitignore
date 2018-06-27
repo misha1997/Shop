@@ -1,3 +1,8 @@
 .idea/
 .htaccess
 app/web/
+app/config/routes.json
+index.php
+libs/Loader.php
+libs/Request.php
+libs/View.php

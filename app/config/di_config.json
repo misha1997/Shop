@@ -1,17 +1,26 @@
 {
   "request": {
-    "classes": "libs\\Request"
+    "classes": "libs\\Request",
+    "arguments": []
   },
   "router": {
-    "classes": "libs\\Router"
+    "classes": "libs\\Router",
+    "arguments": ["request"]
   },
-  "product.view": {
-    "classes": "app\\view\\ProductView"
+  "view": {
+    "classes": "libs\\View",
+    "arguments": []
   },
-  "index.view": {
-    "classes": "app\\view\\MainView"
+  "main": {
+    "classes": "app\\view\\MainView",
+    "arguments": ["view"]
   },
-  "error.view": {
-    "classes": "app\\view\\ErrorView"
+  "product": {
+    "classes": "app\\view\\ProductView",
+    "arguments": ["view"]
+  },
+  "error": {
+    "classes": "app\\view\\ErrorView",
+    "arguments": ["view"]
   }
 }

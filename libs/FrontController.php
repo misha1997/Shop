@@ -6,8 +6,8 @@ class FrontController
 {
     public function run()
     {
-        $di = new DIContainer1();
-        $rout = $di->get(get_class());
+        $di = new DIContainer();
+        $rout = $di->get('router');
 
         $patch = 'app\controllers\\'.ucfirst($rout->getController()).'Controller';
         if (class_exists($patch)) {
@@ -18,6 +18,5 @@ class FrontController
 			$errorController = new ErrorController;
   			$errorController->pageError();
         }
-        
     }
 }
