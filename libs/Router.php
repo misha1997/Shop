@@ -1,11 +1,8 @@
 <?php namespace Libs;
 
-class Router {
-
-    function __construct() {
-
-        $request = new Request;
-        
+class Router
+{
+    function __construct($request) {
         $buffer = file_get_contents('app/config/routes.json');
         $arr = json_decode($buffer, true);
         foreach ($arr[$request->getMethod()] as $key => $val) {

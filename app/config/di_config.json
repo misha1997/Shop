@@ -1,0 +1,26 @@
+{
+  "request": {
+    "classes": "libs\\Request",
+    "arguments": []
+  },
+  "router": {
+    "classes": "libs\\Router",
+    "arguments": ["request"]
+  },
+  "view": {
+    "classes": "libs\\View",
+    "arguments": []
+  },
+  "main": {
+    "classes": "app\\view\\MainView",
+    "arguments": ["view"]
+  },
+  "product": {
+    "classes": "app\\view\\ProductView",
+    "arguments": ["view"]
+  },
+  "error": {
+    "classes": "app\\view\\ErrorView",
+    "arguments": ["view"]
+  }
+}

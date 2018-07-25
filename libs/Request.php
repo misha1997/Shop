@@ -1,6 +1,7 @@
 <?php namespace Libs;
 
-class Request {
+class Request
+{
     function getUri() {
         $arr = parse_url($_SERVER['REQUEST_URI']);
         if(preg_match("#^[a-z0-9_\/.]+$#", $arr['path'])){
