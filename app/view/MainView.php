@@ -1,13 +1,19 @@
 <?php namespace app\view;
 
-class MainView 
+use app\models\Main;
+
+class MainView
 {
 	function __construct($view) 
 	{
+		$main = new Main();
+
 		$view->load('app/web/view_templates/default.tpl'); 
 		$view->set('[title]', 'Home page');
-		$view->set('[text]', 'Text this page');
-		
+
+		foreach ($main->GetPost() as $value) {
+			$view->set('[text]', $value['name']);
+		}
 		echo $view->render();
 	}
 }
