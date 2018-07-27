@@ -1,30 +1,32 @@
 <?php namespace libs;
 
 class View {
-
-    protected $currentFile;
-    protected $tplDirectory;
+    
+    var $values = array();
+    var $html;
 
     function load($file) {
-        $file = $this->tplDirectory.$file;
-        if(isset($file)) {
-            $tplFile = fopen($file, 'r');
-            while (!feof($tplFile)) {
-                $this->currentFile .= fgets($tplFile, 100);
-            }
-            fclose($tplFile);
+        if(empty($file) || !file_exists($file)) {
+            return false;
+        } else {
+            $this->html = join('',file($file));
         }
     }
-    function set($tag, $target) {
-        $this->currentFile = str_replace($tag, $target, $this->currentFile);
+    function set($key, $var) {
+        $key = '['.$key.']';
+        $this->values[$key] = $var;
     }
     function headers() {
         if (headers_sent()) {
             return headers_list();
         }
     }
-    function render() {
-        $this->headers();
-        return $this->currentFile;
+    function tpl_parse() {
+        foreach ($this->values as $key => $replace) {
+            if (is_array($replace)) {
+                $replace = implode($replace);
+            }
+            $this->html = $this->headers().str_replace($key, $replace, $this->html);
+        }
     }
 }

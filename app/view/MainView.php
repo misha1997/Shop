@@ -9,11 +9,14 @@ class MainView
 		$main = new Main();
 
 		$view->load('app/web/view_templates/default.tpl'); 
-		$view->set('[title]', 'Home page');
+		$view->set('title', 'Home page');
 
 		foreach ($main->GetPost() as $value) {
-			$view->set('[text]', $value['name']);
+			$new_array[] = $value['name'];
 		}
-		echo $view->render();
+		$view->set('text', $new_array);
+
+		$view->tpl_parse();
+		echo $view->html;
 	}
 }
