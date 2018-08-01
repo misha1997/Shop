@@ -7,11 +7,11 @@
     "classes": "libs\\Router",
     "arguments": ["request"]
   },
-  "view": {
+    "view": {
     "classes": "libs\\View",
     "arguments": []
   },
-  "main": {
+  "mainView": {
     "classes": "app\\view\\MainView",
     "arguments": ["view"]
   },
@@ -21,6 +21,10 @@
   },
   "error": {
     "classes": "app\\view\\ErrorView",
+    "arguments": ["view"]
+  },
+  "errorDb": {
+    "classes": "app\\view\\ErrorDbView",
     "arguments": ["view"]
   }
 }

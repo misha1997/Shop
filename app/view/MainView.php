@@ -12,11 +12,11 @@ class MainView
 		$view->set('title', 'Home page');
 
 		foreach ($main->GetPost() as $value) {
-			$new_array[] = $value['name'];
+			$array[] = "<p>".$value['id']." - ".$value['name']."</p>";
 		}
-		$view->set('text', $new_array);
+		$view->set('text', $array);
 
-		$view->tpl_parse();
+		$view->tplParse();
 		echo $view->html;
 	}
 }

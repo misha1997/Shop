@@ -2,8 +2,8 @@
 
 class View {
     
-    var $values = array();
-    var $html;
+    public $values = array();
+    public $html;
 
     function load($file) {
         if(empty($file) || !file_exists($file)) {
@@ -21,7 +21,7 @@ class View {
             return headers_list();
         }
     }
-    function tpl_parse() {
+    function tplParse() {
         foreach ($this->values as $key => $replace) {
             if (is_array($replace)) {
                 $replace = implode($replace);

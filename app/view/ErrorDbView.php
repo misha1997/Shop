@@ -1,12 +1,12 @@
 <?php namespace app\view;
 
-class ErrorView 
+class ErrorDbView
 {
 	function __construct($view) 
 	{
 		$view->load('app/web/view_templates/error.tpl'); 
-		$view->set('title', '404');
-		$view->set('text', 'Page 404');
+		$view->set('title', 'Error connect Db');
+		$view->set('text', 'Error connect Db');
 		
 		$view->tplParse();
 		echo $view->html;

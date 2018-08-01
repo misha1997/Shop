@@ -6,7 +6,7 @@ class MainController
 {
 	function index() 
 	{	
-        $di = new DIContainer();
-        $di->get('main');
+		$di = new DIContainer();
+        $di->get('mainView');
 	}
 }

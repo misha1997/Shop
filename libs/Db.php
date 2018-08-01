@@ -1,6 +1,7 @@
 <?php namespace Libs;
 
 use PDO;
+use app\controllers\ErrorController;
 
 class Db
 {
@@ -9,7 +10,14 @@ class Db
 	function __construct() {
         $buffer = file_get_contents('app/config/db_config.json');
         $this->arrConfBd = json_decode($buffer, true);
-		$this->db = new PDO('mysql:host='.$this->get('host').';dbname='.$this->get('name').';charset=utf8', $this->get('user'), $this->get('pass'));
+        try {
+            $this->db = new PDO('mysql:host='.$this->get('host').';dbname='.$this->get('name').';charset=utf8', $this->get('user'), $this->get('pass'));
+            return $this->db;
+        } catch (\PDOException $e) {
+            $errorController = new ErrorController;
+            $errorController->DbError();
+            exit;
+        }
 	}
     function get($keyBd) {
         foreach ($this->arrConfBd as $key => $val) {
