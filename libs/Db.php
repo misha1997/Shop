@@ -1,4 +1,4 @@
-<?php namespace Libs;
+<?php namespace libs;
 
 use PDO;
 use app\controllers\ErrorController;
@@ -14,9 +14,8 @@ class Db
             $this->db = new PDO('mysql:host='.$this->get('host').';dbname='.$this->get('name').';charset=utf8', $this->get('user'), $this->get('pass'));
             return $this->db;
         } catch (\PDOException $e) {
-            $errorController = new ErrorController;
-            $errorController->DbError();
-            exit;
+        	$errorController = new ErrorController;
+        	die($errorController->DbError());
         }
 	}
     function get($keyBd) {
