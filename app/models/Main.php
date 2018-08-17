@@ -1,6 +1,6 @@
 <?php namespace app\models;
 
-use Libs\QueryBuilder;
+use libs\QueryBuilder;
 
 class Main
 {
@@ -8,8 +8,7 @@ class Main
 		$queryBuilder = new QueryBuilder();
 		$sql = $queryBuilder
 			->select()
-			->from('test_table')
-			->where('id', 1)
+			->from('products')
 			->sql();
 		$result = $queryBuilder->query($sql, $queryBuilder->params);
 		return $result;

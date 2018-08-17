@@ -4,9 +4,18 @@ use Libs\DIContainer;
 
 class MainController
 {
+	protected $di;
+
+	function __construct() 
+	{
+		$this->di = new DIContainer();
+	}
 	function index() 
 	{	
-		$di = new DIContainer();
-        $di->get('mainView');
+        $this->di->get('mainView');
+	}
+	function postId() 
+	{	
+        $this->di->get('postIdView');
 	}
 }
