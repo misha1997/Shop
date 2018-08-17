@@ -7,7 +7,7 @@
     "classes": "libs\\Router",
     "arguments": ["request"]
   },
-    "view": {
+  "view": {
     "classes": "libs\\View",
     "arguments": []
   },
@@ -15,8 +15,20 @@
     "classes": "app\\view\\MainView",
     "arguments": ["view"]
   },
-  "product": {
-    "classes": "app\\view\\ProductView",
+  "postIdView": {
+    "classes": "app\\view\\PostIdView",
+    "arguments": ["view"]
+  },
+  "adminView": {
+    "classes": "app\\view\\AdminView",
+    "arguments": ["view"]
+  },
+  "publicView": {
+    "classes": "app\\view\\PublicView",
+    "arguments": ["view"]
+  },
+  "updateView": {
+    "classes": "app\\view\\UpdateView",
     "arguments": ["view"]
   },
   "error": {
