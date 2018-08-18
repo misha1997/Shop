@@ -13,16 +13,6 @@ class Admin
 		$result = $queryBuilder->query($sql, $queryBuilder->params);
 		return $result;
 	}
-	function GetPostId($id) {
-		$queryBuilder = new QueryBuilder();
-		$sql = $queryBuilder
-			->select()
-			->from('products')
-			->where('id', $id)
-			->sql();
-		$result = $queryBuilder->query($sql, $queryBuilder->params);
-		return $result;
-	}
 	function PublicTovar($title, $description, $price, $filename) {
 		$queryBuilder = new QueryBuilder();
 		$sql = $queryBuilder

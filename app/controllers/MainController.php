@@ -14,7 +14,7 @@ class MainController
 	{	
         $this->di->get('mainView');
 	}
-	function postId() 
+	function GetPostId() 
 	{	
         $this->di->get('postIdView');
 	}

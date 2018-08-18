@@ -4,9 +4,9 @@
       "controller" : "main",
       "action" : "index"
     },
-    "#^\/[0-9]$#": {
+    "#^\/.post=([0-9])#": {
       "controller" : "main",
-      "action" : "postId"
+      "action" : "GetPostId"
     },
     "#^\/admin#": {
       "controller" : "admin",

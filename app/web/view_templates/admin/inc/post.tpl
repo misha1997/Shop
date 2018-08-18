@@ -4,7 +4,7 @@
             <td>[price]</td>
             <td>[description]</td>
             <td>
-            	<a href="/[id]" target="_blank">Посмотреть</a><br>
+            	<a href="/?post=[id]" target="_blank">Посмотреть</a><br>
             	<a href="/?up=[id]">Редактировать</a>
                   <a href="?del=[id]">Удалить</a>
             </td>
