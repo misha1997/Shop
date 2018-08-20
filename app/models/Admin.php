@@ -4,15 +4,6 @@ use libs\QueryBuilder;
 
 class Admin
 {
-	function GetPost() {
-		$queryBuilder = new QueryBuilder();
-		$sql = $queryBuilder
-			->select()
-			->from('products')
-			->sql();
-		$result = $queryBuilder->query($sql, $queryBuilder->params);
-		return $result;
-	}
 	function PublicTovar($title, $description, $price, $filename) {
 		$queryBuilder = new QueryBuilder();
 		$sql = $queryBuilder
@@ -22,6 +13,16 @@ class Admin
 			->values('description', $description)
 			->values('price', $price)
 			->values('image', $filename)
+			->sql();
+		$result = $queryBuilder->query($sql, $queryBuilder->params);
+		return $result;
+	}
+	function GetPostId($id) {
+		$queryBuilder = new QueryBuilder();
+		$sql = $queryBuilder
+			->select()
+			->from('products')
+			->where('id', $id)
 			->sql();
 		$result = $queryBuilder->query($sql, $queryBuilder->params);
 		return $result;
@@ -40,7 +41,10 @@ class Admin
 		$queryBuilder = new QueryBuilder();
 		$sql = $queryBuilder
 			->update('products')
-			->set('title = \''. $title . '\', description = \'' . $description . '\', price = \'' . $price . '\', image = \'' . $filename . '\'') // лучше еще не придумал
+			->set('title', $title)
+			->set('description', $description)
+			->set('price', $price)
+			->set('image', $filename)
 			->where('id', $id)
 			->sql();
 		$result = $queryBuilder->query($sql, $queryBuilder->params);

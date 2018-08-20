@@ -48,48 +48,57 @@ class QueryBuilder extends Db
         $this->params[] = $value;
         return $this;
     }
-    function set($column) {
-        $this->sql['set'] = "{$column}";
+    public function set($data, $val) {
+        $this->sql['set'][] = "{$data} = '$val'";
         return $this;
     }
     function sql() {
         if(!empty($this->sql)) {
             foreach ($this->sql as $key => $value) {
-                if ($key == 'set') {
-                    $sql .= ' SET ';
-                }
-                if ($key == 'values') {
-                    $sql .= '(';
-                    foreach ($value as $key) {
-                        $sql .= $key;
-                        if (count($value) > 1 && next($value)) {
-                            $sql .= ', ';
-                        }
-                    }
-                    $sql .= ') VALUES (';
-                    foreach ($this->params as $key) {
-                        if ($key == '') {
-                            $sql .= 'NULL';
-                        } else {
-                            $sql .= '\''.$key.'\'';
-                        }
-                        if (count($this->params) > 1 && next($this->params)) {
-                            $sql .= ', ';
-                        }
-                    }
-                    $sql .= ')';
-                }
-                else if ($key == 'where') {
-                    $sql .= ' WHERE ';
-                    foreach ($value as $key) {
-                        $sql .= $key;
-                        if (count($value) > 1 && next($value)) {
-                            $sql .= ' AND ';
-                        }
-                    }
-                } else {
-                    $sql .= $value;
-                }
+            	switch ($key) {
+            		case 'set':
+	            		$sql .= ' SET ';
+	                    foreach ($value as $key) {
+	                        $sql .= $key;
+	                        if (count($value) > 1 && next($value)) {
+	                            $sql .= ', ';
+	                        }
+	                    }
+            			break;
+        			case 'values':
+	                    $sql .= '(';
+	                    foreach ($value as $key) {
+	                        $sql .= $key;
+	                        if (count($value) > 1 && next($value)) {
+	                            $sql .= ', ';
+	                        }
+	                    }
+	                    $sql .= ') VALUES (';
+	                    foreach ($this->params as $key) {
+	                        if ($key == '') {
+	                            $sql .= 'NULL';
+	                        } else {
+	                            $sql .= '\''.$key.'\'';
+	                        }
+	                        if (count($this->params) > 1 && next($this->params)) {
+	                            $sql .= ', ';
+	                        }
+	                    }
+	                    $sql .= ')';
+        				break;
+        			case 'where':
+	                    $sql .= ' WHERE ';
+	                    foreach ($value as $key) {
+	                        $sql .= $key;
+	                        if (count($value) > 1 && next($value)) {
+	                            $sql .= ' AND ';
+	                        }
+	                    }
+        				break;
+            		default:
+            			$sql .= $value;
+            			break;
+            	}
             }
         }
         return $sql;
