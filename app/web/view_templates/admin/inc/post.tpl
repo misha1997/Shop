@@ -5,7 +5,7 @@
             <td>[description]</td>
             <td>
             	<a href="/?post=[id]" target="_blank">Посмотреть</a><br>
-            	<a href="/?up=[id]">Редактировать</a>
-                  <a href="?del=[id]">Удалить</a>
+            	<a href="/?up=[id]">Редактировать</a><br>
+                  <a href="/?del=[id]">Удалить</a>
             </td>
             </tr>

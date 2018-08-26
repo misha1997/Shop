@@ -14,9 +14,6 @@ class AdminController
 	}
 	function index() {	
         $this->di->get('adminView');
-        if (isset($_GET['del'])) {
-			$this->admin->DeletTovar($_GET['del']);
-        }
 	}
 	function renameFile($source, $tempfile) {
 		$target_path ='app/web/img/'.$source;
@@ -41,12 +38,17 @@ class AdminController
 			$this->admin->PublicTovar($title, $description, $price, $filename);
 		}
 	}
+	function deleteTovar() {	
+        if (isset($_GET['del'])) {
+			$this->admin->DeletTovar($_GET['del']);
+        }
+        $this->di->get('adminView');
+	}
 	function updateTovar() {	
-		$this->di->get('updateView');
 		if(isset($_POST["update"])) {
 			if (isset($_FILES['image'])) {
 				$filename = $_FILES['image']['name'];
-				$tempfile = $_FILES['image']['tmp_name'];
+                $tempfile = $_FILES['image']['tmp_name'];
 				$this->renameFile($filename, $tempfile);
 				if ($filename == '') {
 					foreach ($this->admin->GetPostId($_GET['up']) as $key) {
@@ -60,9 +62,9 @@ class AdminController
 			$price = htmlspecialchars ($_POST["price"]);
 			$category = htmlspecialchars ($_POST["category"]);
 			$this->admin->UpdateTovar($id, $title, $description, $price, $filename);
+			$this->di->get('updateView');
+		} else {
+			$this->di->get('updateView');
 		}
-        if (isset($_POST['delete'])) {
-			$this->admin->DeletTovar($_GET['up']);
-        }
 	}
 }

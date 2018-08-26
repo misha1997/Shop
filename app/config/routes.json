@@ -19,6 +19,10 @@
     "#^\/.up=([0-9])#": {
       "controller" : "admin",
       "action" : "updateTovar"
+    },
+    "#^\/.del=([0-9])#": {
+      "controller" : "admin",
+      "action" : "deleteTovar"
     }
   },
   "POST": {

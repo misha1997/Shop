@@ -38,8 +38,7 @@
               </div>
                 <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" name="update" class="btn btn-default">Сохранить</button>
-            	    <button type="reset" class="btn btn-default">Очистить</button>
-                  <button type="submit" name="delete" class="btn btn-default">Удалить</button>
+                  <a href="/?del=[id]" class="btn btn-default">Удалить</a>
                 </div>
               </div>
             </form>
