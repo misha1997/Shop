@@ -1,7 +1,5 @@
 <?php namespace Libs;
 
-use app\controllers\ErrorController;
-
 class DIContainer
 {
     protected $arrConf;

@@ -1,30 +1,48 @@
 <?php namespace libs;
 
 class View {
-
-    protected $currentFile;
-    protected $tplDirectory;
+    
+    public $values = array();
+    public $html;
+    public $parse_tpl;
 
     function load($file) {
-        $file = $this->tplDirectory.$file;
-        if(isset($file)) {
-            $tplFile = fopen($file, 'r');
-            while (!feof($tplFile)) {
-                $this->currentFile .= fgets($tplFile, 100);
-            }
-            fclose($tplFile);
+        if(empty($file) || !file_exists($file)) {
+            return false;
+        } else {
+            $this->html = join('',file($file));
         }
     }
-    function set($tag, $target) {
-        $this->currentFile = str_replace($tag, $target, $this->currentFile);
+    function set($key, $val) {
+        if (!is_array($val)) {
+            $this->values['['.$key.']'] = $val;
+        } elseif(is_array($val)) {
+            foreach ($val as $k => $v) {
+                $this->values['['.$key.']'] .= $v;
+            }
+        } else {
+            $this->values[$name] = "";
+        }
     }
     function headers() {
         if (headers_sent()) {
             return headers_list();
         }
     }
-    function render() {
-        $this->headers();
-        return $this->currentFile;
+    function parse($tpl) {
+        $this->parse_tpl = file_get_contents($tpl);
+        foreach ($this->values as $k => $v) {
+            $this->parse_tpl = str_replace($k, $v, $this->parse_tpl);
+        }
+        return $this->parse_tpl;
+    }
+    function tplParse() {
+        preg_match_all("/\[include\=(.*?[.tpl])\]/is", $this->html, $mas);
+        foreach ($mas[0] as $k => $v) {
+            $this->html = str_replace($mas[0][$k], $this->parse($mas[1][$k]), $this->html);
+        }
+        foreach ($this->values as $key => $replace) {
+            $this->html = $this->headers().str_replace($key, $replace, $this->html);
+        }
     }
 }

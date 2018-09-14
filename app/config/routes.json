@@ -4,15 +4,35 @@
       "controller" : "main",
       "action" : "index"
     },
-    "#^\/product$#": {
-      "controller" : "product",
-      "action" : "allProduct"
+    "#^\/.post=([0-9])#": {
+      "controller" : "main",
+      "action" : "GetPostId"
+    },
+    "#^\/admin#": {
+      "controller" : "admin",
+      "action" : "index"
+    },
+    "#^\/public#": {
+      "controller" : "admin",
+      "action" : "publicTovar"
+    },
+    "#^\/.up=([0-9])#": {
+      "controller" : "admin",
+      "action" : "updateTovar"
+    },
+    "#^\/.del=([0-9])#": {
+      "controller" : "admin",
+      "action" : "deleteTovar"
     }
   },
   "POST": {
-    "#^\/tovar\/([0-9]+)$#": {
-      "controller" : "tovat",
-      "action" : "index"
+    "#^\/public*#": {
+      "controller" : "admin",
+      "action" : "publicTovar"
+    },
+    "#^\/.up=([0-9])#": {
+      "controller" : "admin",
+      "action" : "updateTovar"
     }
   }
 }

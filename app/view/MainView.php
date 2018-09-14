@@ -1,13 +1,26 @@
 <?php namespace app\view;
 
-class MainView 
+use app\models\Main;
+
+class MainView
 {
 	function __construct($view) 
 	{
-		$view->load('app/web/view_templates/default.tpl'); 
-		$view->set('[title]', 'Home page');
-		$view->set('[text]', 'Text this page');
-		
-		echo $view->render();
+		$main = new Main();
+
+		$view->load('app/web/view_templates/pageMain.tpl');
+		$view->set('title', 'Главная страница');
+
+		foreach ($main->GetPost() as $value) {
+			$view->set('id', $value['id']);
+			$view->set('title_post', $value['title']);
+			$view->set('image', $value['image']);
+			$view->set('price', $value['price']);
+			$posts[] = $view->parse('app/web/view_templates/inc/post.tpl');
+		}
+		$view->set('post', $posts);
+
+		$view->tplParse();
+		echo $view->html;
 	}
 }

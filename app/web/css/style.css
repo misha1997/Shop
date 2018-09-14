@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Arial";
+}
+.wrapper {
+	width: 880px;
+	margin: 0 auto;
+}
+.post {
+	width: 250px;
+	border: 1px solid silver;
+	margin: 10px;
+	float: left;
+	padding: 10px;
+}
+.post .title_post {
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	padding: 10px 0;
+}
+.post .image img {
+	height: 150px;
+	width: 100%;
+}
+.post .price {
+	float: right;
+	padding: 10px 0;
+}
+.post .category {
+	float: left;
+	padding: 10px 0;
+}
+.img {
+	width: 30%;
+}
+.img img {
+	padding-top: 20px;
+	width: 100%;
+	float: left;
+}
+.info {
+	float: left;
+	width: 70%;
+}
+.title {
+	padding: 20px 0 0 20px;
+	font-size: 24px;
+}
+.price, .description {
+	padding: 20px 0 0 20px;
+}
+.price span {
+	color: red;
+	font-weight: bold;
+}
