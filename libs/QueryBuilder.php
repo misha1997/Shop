@@ -1,27 +1,27 @@
 <?php namespace Libs;
 
 use PDO;
-use libs\Db;
 
 class QueryBuilder extends Db
 {
     protected $sql = [];
     protected $values = [];
     public $params = [];
-
     function query($sql, $params) {
         $stmts = $this->db->prepare($sql);
         $stmts->execute($params);
         $result = $stmts->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    function select($select = '*') {
-        $this->reset();
+    function select($select = '') {
         $this->sql['select'] = "SELECT {$select} ";
         return $this;
     }
+    function count($count) {
+        $this->sql['count'] = " COUNT({$count}) AS count ";
+        return $this;
+    }
     function delete($select = '*') {
-        $this->reset();
         $this->sql['delete'] = "DELETE {$delete}";
         return $this;
     }
@@ -34,8 +34,20 @@ class QueryBuilder extends Db
         $this->params[] = $value;
         return $this;
     }
+    function orderBy($field, $order)
+    {
+        $this->sql['order_by'] = " ORDER BY {$field} {$order}";
+        return $this;
+    }
+    function limit($limit) {
+        $this->sql['limit'] = " LIMIT {$limit}";
+        return $this;
+    }
+    function offset($offset) {
+        $this->sql['offset'] = " OFFSET {$offset}";
+        return $this;
+    }
     function update($table) {
-        $this->reset();
         $this->sql['update'] = "UPDATE {$table}";
         return $this;
     }
@@ -55,57 +67,54 @@ class QueryBuilder extends Db
     function sql() {
         if(!empty($this->sql)) {
             foreach ($this->sql as $key => $value) {
-            	switch ($key) {
-            		case 'set':
-	            		$sql .= ' SET ';
-	                    foreach ($value as $key) {
-	                        $sql .= $key;
-	                        if (count($value) > 1 && next($value)) {
-	                            $sql .= ', ';
-	                        }
-	                    }
-            			break;
-        			case 'values':
-	                    $sql .= '(';
-	                    foreach ($value as $key) {
-	                        $sql .= $key;
-	                        if (count($value) > 1 && next($value)) {
-	                            $sql .= ', ';
-	                        }
-	                    }
-	                    $sql .= ') VALUES (';
-	                    foreach ($this->params as $key) {
-	                        if ($key == '') {
-	                            $sql .= 'NULL';
-	                        } else {
-	                            $sql .= '\''.$key.'\'';
-	                        }
-	                        if (count($this->params) > 1 && next($this->params)) {
-	                            $sql .= ', ';
-	                        }
-	                    }
-	                    $sql .= ')';
-        				break;
-        			case 'where':
-	                    $sql .= ' WHERE ';
-	                    foreach ($value as $key) {
-	                        $sql .= $key;
-	                        if (count($value) > 1 && next($value)) {
-	                            $sql .= ' AND ';
-	                        }
-	                    }
-        				break;
-            		default:
-            			$sql .= $value;
-            			break;
-            	}
+                switch ($key) {
+                    case 'set':
+                        $sql .= ' SET ';
+                        foreach ($value as $key) {
+                            $sql .= $key;
+                            if (count($value) > 1 && next($value)) {
+                                $sql .= ', ';
+                            }
+                        }
+                        break;
+                    case 'values':
+                        $sql .= '(';
+                        foreach ($value as $key) {
+                            $sql .= $key;
+                            if (count($value) > 1 && next($value)) {
+                                $sql .= ', ';
+                            }
+                        }
+                        $sql .= ') VALUES (';
+                        foreach ($this->params as $key) {
+                            if ($key == '') {
+                                $sql .= 'NULL';
+                            } else {
+                                $sql .= '\''.$key.'\'';
+                            }
+                            if ($key == end($this->params)) {
+                                $sql .= '';
+                            } else {
+                                $sql .= ', ';
+                            }
+                        }
+                        $sql .= ')';
+                        break;
+                    case 'where':
+                        $sql .= ' WHERE ';
+                        foreach ($value as $key) {
+                            $sql .= $key;
+                            if (count($value) > 1 && next($value)) {
+                                $sql .= ' AND ';
+                            }
+                        }
+                        break;
+                    default:
+                        $sql .= $value;
+                        break;
+                }
             }
         }
         return $sql;
-    }
-
-    function reset() {
-        $this->sql = [];
-        $this->values = [];
     }
 }
