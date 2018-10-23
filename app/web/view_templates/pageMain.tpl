@@ -7,6 +7,7 @@
 	[include=app/web/view_templates/inc/menu.tpl]
 	<div class="wrapper">
 		[post]
+		<div class="pagination">[pagin]</div>
 	</div>
 </body>
 </html>

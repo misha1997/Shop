@@ -1,19 +1,22 @@
 <?php namespace app\controllers;
-
 use Libs\DIContainer;
 use app\models\Admin;
-
 class AdminController
 {
 	protected $di;
 	protected $admin;
-
 	function __construct() {
 		$this->di = new DIContainer();
 		$this->admin = new Admin();
 	}
 	function index() {	
-        $this->di->get('adminView');
+		$this->di->get('adminView');
+	}
+	function publicTovar() {	
+		$this->di->get('publicView');
+	}
+	function deleteTovar() {
+		$this->admin->DeletTovar($_GET['del']);
 	}
 	function renameFile($source, $tempfile) {
 		$target_path ='app/web/img/'.$source;
@@ -23,26 +26,17 @@ class AdminController
 		}
 		move_uploaded_file($tempfile, $target_path);
 	}
-	function publicTovar() {	
-        $this->di->get('publicView');
-		if(isset($_POST["send"])) {
-			if (isset($_FILES['image'])) {
-				$filename = $_FILES['image']['name'];
-				$tempfile = $_FILES['image']['tmp_name'];
-				$this->renameFile($filename, $tempfile);
-				if ($filename == '') {$filename = "default.jpg";}
-			}
-			$title = htmlspecialchars ($_POST["title"]);
-			$description = htmlspecialchars ($_POST["description"]);
-			$price = htmlspecialchars ($_POST["price"]);
-			$this->admin->PublicTovar($title, $description, $price, $filename);
+	function publicD() {	
+		if (isset($_FILES['image'])) {
+			$filename = $_FILES['image']['name'];
+			$tempfile = $_FILES['image']['tmp_name'];
+			$this->renameFile($filename, $tempfile);
+			if ($filename == '') {$filename = "default.jpg";}
 		}
-	}
-	function deleteTovar() {	
-        if (isset($_GET['del'])) {
-			$this->admin->DeletTovar($_GET['del']);
-        }
-        $this->di->get('adminView');
+		$title = htmlspecialchars ($_POST["title"]);
+		$description = htmlspecialchars ($_POST["description"]);
+		$price = htmlspecialchars ($_POST["price"]);
+		$this->admin->PublicTovar($title, $description, $price, $filename);
 	}
 	function updateTovar() {	
 		if(isset($_POST["update"])) {

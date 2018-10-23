@@ -20,7 +20,7 @@ class Admin
 	function GetPostId($id) {
 		$queryBuilder = new QueryBuilder();
 		$sql = $queryBuilder
-			->select()
+			->select("*")
 			->from('products')
 			->where('id', $id)
 			->sql();

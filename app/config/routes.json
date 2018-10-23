@@ -4,13 +4,21 @@
       "controller" : "main",
       "action" : "index"
     },
+    "#^\/.page=([0-9])#": {
+      "controller" : "main",
+      "action" : "index"
+    },
     "#^\/.post=([0-9])#": {
       "controller" : "main",
       "action" : "GetPostId"
     },
-    "#^\/admin#": {
+    "#^\/admin*#": {
       "controller" : "admin",
       "action" : "index"
+    },
+    "#^\/getpost#": {
+      "controller" : "main",
+      "action" : "getPost"
     },
     "#^\/public#": {
       "controller" : "admin",
@@ -26,9 +34,9 @@
     }
   },
   "POST": {
-    "#^\/public*#": {
+    "#^\/pub#": {
       "controller" : "admin",
-      "action" : "publicTovar"
+      "action" : "publicD"
     },
     "#^\/.up=([0-9])#": {
       "controller" : "admin",

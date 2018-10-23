@@ -5,11 +5,11 @@
 </head>
 <body>
     [include=app/web/view_templates/inc/menu.tpl]
-	<div class="global-cont">
-	    <div class="container">
-	      <div class="row">
-	        [include=app/web/view_templates/admin/inc/leftMenu.tpl]
-	        <div class="col-md-10">
+  <div class="global-cont">
+      <div class="container">
+        <div class="row">
+          [include=app/web/view_templates/admin/inc/leftMenu.tpl]
+          <div class="col-md-10">
             <form class="form-horizontal" role="form"  action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">Название</label>
@@ -42,9 +42,9 @@
                 </div>
               </div>
             </form>
-	        </div>
-	      </div>
-	    </div>
-	</div>
+          </div>
+        </div>
+      </div>
+  </div>
 </body>
 </html>

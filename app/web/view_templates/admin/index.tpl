@@ -2,6 +2,7 @@
 <html>
 <head>
 	[include=app/web/view_templates/inc/header.tpl]
+	<script type="text/javascript" src="app/web/js/delete.js"></script>
 </head>
 <body>
     [include=app/web/view_templates/inc/menu.tpl]
@@ -25,6 +26,7 @@
 	                [post]
 	              </tbody>
 	            </table>
+	            <div class="pagination">[pagin]</div>
 	          </div>
 	        </div>
 	      </div>

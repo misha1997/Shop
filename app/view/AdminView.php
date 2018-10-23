@@ -1,17 +1,18 @@
 <?php namespace app\view;
 
-use app\models\Admin;
-
 class AdminView
 {
-	function __construct($view) 
+	function __construct($view, $main) 
 	{
-		$admin = new Admin();
-
 		$view->load('app/web/view_templates/admin/index.tpl');
 		$view->set('title', 'Админ панель');
-		
-		foreach ($admin->GetPost() as $value) {
+
+		$pagin = array();
+		$pagin['prePage'] = 4;
+		$pagin['currentPage'] = isset($_GET['page']) ? $_GET['page'] : 1;
+		$pagin['offset'] = ($pagin['currentPage'] * $pagin['prePage']) - $pagin['prePage'];
+
+		foreach ($main->GetPost($pagin['offset'], $pagin['prePage']) as $value) {
 			$view->set('id', $value['id']);
 			$view->set('title_post', $value['title']);
 			$view->set('image', $value['image']);
@@ -19,8 +20,22 @@ class AdminView
 			$view->set('description', $value['description']);
 			$posts[] = $view->parse('app/web/view_templates/admin/inc/post.tpl');
 		}
-		$view->set('post', $posts);
 
+		foreach ($main->GetCount() as $value) {
+			$count = $value['count'];
+		}
+
+		$pagin['pageCnt'] = ceil($count / $pagin['prePage']);
+		for ($i=1; $i <= $pagin['pageCnt']; $i++) { 
+			if ($pagin['currentPage'] == $i) {
+				$pag[] = '<span style="font-weight: bold">'.$i.'</span>';
+			} else {
+				$pag[] = '<a href="?page='.$i.'">'.$i.'</a>';
+			}
+		}
+
+		$view->set('pagin', $pag);
+		$view->set('post', $posts);
 		$view->tplParse();
 		echo $view->html;
 	}

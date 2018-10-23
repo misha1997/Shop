@@ -3,6 +3,10 @@
     "classes": "libs\\Request",
     "arguments": []
   },
+  "sessionHandler": {
+    "classes": "libs\\SessionHandler",
+    "arguments": []
+  },
   "router": {
     "classes": "libs\\Router",
     "arguments": ["request"]
@@ -11,25 +15,33 @@
     "classes": "libs\\View",
     "arguments": []
   },
+  "main": {
+    "classes": "app\\models\\Main",
+    "arguments": []
+  },
+  "admin": {
+    "classes": "app\\models\\Admin",
+    "arguments": []
+  },
   "mainView": {
     "classes": "app\\view\\MainView",
-    "arguments": ["view"]
+    "arguments": ["view", "main"]
   },
   "postIdView": {
     "classes": "app\\view\\PostIdView",
-    "arguments": ["view"]
+    "arguments": ["view", "main"]
   },
   "adminView": {
     "classes": "app\\view\\AdminView",
-    "arguments": ["view"]
+    "arguments": ["view", "main"]
   },
   "publicView": {
     "classes": "app\\view\\PublicView",
-    "arguments": ["view"]
+    "arguments": ["view", "admin"]
   },
   "updateView": {
     "classes": "app\\view\\UpdateView",
-    "arguments": ["view"]
+    "arguments": ["view", "main"]
   },
   "error": {
     "classes": "app\\view\\ErrorView",

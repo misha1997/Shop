@@ -1,16 +1,12 @@
 <?php namespace app\view;
 
-use app\models\Main;
-
 class PostIdView
 {
-	function __construct($view) 
+	function __construct($view, $main) 
 	{
-		$main = new Main();
-
 		$view->load('app/web/view_templates/pagePostId.tpl');
 
-		foreach ($main->GetPostId() as $value) {
+		foreach ($main->GetPostId($_GET['post']) as $value) {
 			$view->set('title', $value['title']);
 			$view->set('image', $value['image']);
 			$view->set('price', $value['price']);
