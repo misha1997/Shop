@@ -4,7 +4,6 @@ class DIContainer
 {
     protected $arrConf;
     protected $components;
-
     function __construct()
     {
         $buffer = file_get_contents("app/config/di_config.json");
@@ -13,13 +12,13 @@ class DIContainer
     function get($key)
     {
         $classes = $this->arrConf[$key]["classes"];
-        if (count($this->components) != 0 && in_array($key, $this->components)) {
+        if ($this->components != 0 && in_array($key, $this->components)) {
             return $this->components[$key];
         }
         $arguments = $this->arrConf[$key]["arguments"];
         $initArgs = array();
         foreach ($arguments as $key) {
-            if (count($this->components) == 0 || !in_array($key, $this->components)) {
+            if ($this->components == 0 || !in_array($key, $this->components)) {
                 $this->components[$key] = $this->get($key);
             }
             $initArgs[$key] = $this->components[$key];
